@@ -5,32 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mis Ventas</title>
     
-    <!-- ========================================== -->
-    <!-- TRUCO PARA CHROME Y BRAVE (MANIFEST)       -->
-    <!-- Esto le dice al celular: "Soy una App real"-->
-    <!-- ========================================== -->
-    <link rel="manifest" href='data:application/manifest+json,{
-        "name": "Mis Ventas",
-        "short_name": "Ventas",
-        "start_url": ".",
-        "display": "standalone",
-        "theme_color": "#059669",
-        "background_color": "#ffffff",
-        "icons": [{
-            "src": "icono.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        }]
-    }' />
-
-    <!-- Iconos normales (con truco anti-caché ?v=3) -->
-    <link rel="icon" type="image/png" sizes="192x192" href="icono.png?v=3">
-    <link rel="icon" type="image/png" sizes="32x32" href="icono.png?v=3">
-    <link rel="apple-touch-icon" href="icono.png?v=3">
+    <!-- ================================================== -->
+    <!-- CONFIGURACIÓN OFICIAL DE APP (PWA)                 -->
+    <!-- ================================================== -->
     
-    <!-- Color de la barra del navegador (Verde Esmeralda) -->
+    <!-- 1. Enlace al "Pasaporte" oficial (Para Chrome/Brave en Android) -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- 2. Iconos directos (Para iPhone/iPad y Fallbacks) -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./icono.png">
+    <link rel="apple-touch-icon" href="./icono.png">
+    
+    <!-- 3. Colores y Pantalla -->
     <meta name="theme-color" content="#059669">
-    <!-- Modo Pantalla Completa en iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -229,13 +216,13 @@
 
                     <div className="p-4 space-y-4">
                         {/* TARJETA DEUDA TOTAL: GRIS OSCURO (CORREGIDO) */}
-                        <div className="bg-gray-900 rounded-xl shadow-md p-4 text-white border-l-4 border-emerald-400 shadow-xl">
+                        <div className="bg-emerald-900 rounded-xl shadow-md p-4 text-white border-l-4 border-emerald-400 shadow-xl">
                             <div className="flex justify-between items-start">
-                                <div><p className="text-gray-400 text-xs uppercase font-bold tracking-wider">Deuda Total</p><h2 className="text-4xl font-bold mt-1">S/. {saldoTotal.toFixed(2)}</h2></div>
+                                <div><p className="text-emerald-200 text-xs uppercase font-bold tracking-wider">Deuda Total</p><h2 className="text-4xl font-bold mt-1">S/. {saldoTotal.toFixed(2)}</h2></div>
                                 <button onClick={() => setShowPayment(!showPayment)} className="bg-emerald-500 hover:bg-emerald-400 p-3 rounded-xl text-white shadow-lg shadow-emerald-900/40 transition active:scale-95"><IconDollar /></button>
                             </div>
                             {showPayment && (
-                                <div className="mt-4 pt-4 border-t border-gray-700 flex gap-2 animate-in slide-in-from-top-2 fade-in">
+                                <div className="mt-4 pt-4 border-t border-emerald-800 flex gap-2 animate-in slide-in-from-top-2 fade-in">
                                     <input type="number" value={montoPago} onChange={e=>setMontoPago(e.target.value)} placeholder="0.00" className="flex-1 min-w-0 bg-emerald-100 p-3 rounded-lg text-emerald-900 font-bold text-lg outline-none focus:ring-2 focus:ring-emerald-500 placeholder-emerald-700/50"/>
                                     <button onClick={registrarPago} className="bg-emerald-500 hover:bg-emerald-400 px-4 rounded-lg font-bold text-white transition shrink-0">Pagar</button>
                                 </div>
